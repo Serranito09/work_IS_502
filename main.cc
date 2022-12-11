@@ -6,26 +6,29 @@ using namespace std;
 
 int main(){
     int op,cambiarI;
-    string rol;
-    string modificar,cambiarS;
-    Curso p1;
-   vector <Curso> p;
+    string modificar,cambiarS;//variables para cambiar datos
+    Curso c1;//objeto curso
+   vector <Curso> p;//vector de cursos
+  
+  
+   //insertar
    for(int i=0;i<4;i++){
-    p1.set_Dni(to_string(i));
-    p1.set_Precio(4.3);
-    p1.set_nombre("alvaro");
-    p1.set_Descripcion("esta es una pequeña descripcion");
-    p1.set_Coordinador(to_string(i));
-        p.push_back(p1);
+    c1.set_Dni(to_string(i));
+    c1.set_Precio(4.3);
+    c1.set_nombre("alvaro");
+    c1.set_Descripcion("esta es una pequeña descripcion");
+    c1.set_Coordinador(to_string(i));
+        p.push_back(c1);
    }
+    //mostrar
       for(auto it=p.begin();it!=p.end();it++){
       cout<<(*it).getData();
       }
+      
+      //modificar
       cout<<"Que curso desea cambiar\n";
       cin>>modificar;
-        system("clear");
-     
-        
+        system("clear");  
       for(auto it=p.begin();it!=p.end();it++){
         if(((*it).getDni())==modificar){
             do
@@ -82,7 +85,7 @@ int main(){
       }
 }
      
-     
+  //eliminar   
 for(auto it=p.begin();it!=p.end();it++){
       cout<<(*it).getData();
       }
@@ -96,6 +99,7 @@ for(auto it=p.begin();it!=p.end();it++){
         }
 
 }
+//mostrar
 for(auto it=p.begin();it!=p.end();it++){
       cout<<(*it).getData();
       }
