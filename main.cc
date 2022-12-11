@@ -8,7 +8,6 @@ int main(){
     int op,cambiarI;
     string rol;
     string modificar,cambiarS;
-    char cambiarc[200] ;
     Curso p1;
    vector <Curso> p;
    for(int i=0;i<4;i++){
@@ -87,4 +86,19 @@ int main(){
 for(auto it=p.begin();it!=p.end();it++){
       cout<<(*it).getData();
       }
+      cout<<"Que curso desea eliminar\n";
+      cin>>modificar;
+        system("clear");
+      for(auto it=p.begin();it!=p.end();it++){
+        if(((*it).getDni())==modificar){
+            p.erase(it);
+            break;
+        }
+
 }
+for(auto it=p.begin();it!=p.end();it++){
+      cout<<(*it).getData();
+      }
+}
+
+
