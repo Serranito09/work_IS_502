@@ -68,6 +68,11 @@ class Curso
         +"\n";
     }
 
+    int getAforo()
+    {
+        return aforo_;
+    }
+
     //Modificadores
 
     bool set_Aforo(int aforo){
