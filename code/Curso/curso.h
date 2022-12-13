@@ -6,7 +6,6 @@
 #include <vector>
 using namespace std;
 
-
 class Curso
 {
     private:
@@ -17,6 +16,7 @@ class Curso
         double precio_;
         string descripcion_ ;
         int aforo_;
+
         //añadir double precio,int aforo,int fechainicio,string coordinador,string descripcion
         //menu:opciones Mostrar cursos,Añadir eliminar cursos,contacto,modificar cursos,inscribirse
 
@@ -42,7 +42,7 @@ class Curso
     int getid(){
         return id_;
     }
-    string getNombre(){
+    string getNombreC(){
         return nombre_;
     }
     string getCoordinador(){
@@ -57,6 +57,7 @@ class Curso
     double get_precio(){
         return precio_;
     }
+    
     string getData(){
         return "id: "+to_string(id_)+"\n"+  
         "Nombre: "+nombre_+"\n"

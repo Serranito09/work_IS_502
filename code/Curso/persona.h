@@ -32,8 +32,17 @@ class Persona
 
     }
     //observadores
+    int getId(){
+        return id_;
+    }
     string getDni(){
         return Dni_;
+    }
+    string getNombreP(){
+        return nombre_;
+    }
+    string getApellidos(){
+        return apellidos_;
     }
     string getfullName(){
         return nombre_+"  "+apellidos_;
@@ -54,7 +63,7 @@ class Persona
         +"Correo: "+correo_+"\n"
         +"Edad: "+ to_string(edad_)+"\n"
         +"Lugar de residencia: "+lugar_+"\n" 
-        +"id curso: "+to_string(id_)+"\n";
+        +"id curso: "+to_string(id_)+"\n\n";
     }
 
     //modificadores
@@ -89,10 +98,14 @@ class Persona
         }
         else{
             lugar_=lugar;
+            return true;
         }
     }
     void setCorreo(string correo){
         correo_=correo;
+    }
+    void setId(int id){
+        id_=id;
     }
 
 
