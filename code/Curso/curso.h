@@ -36,10 +36,10 @@ class Curso
     
 
     //Observadores
-    int aforo(){
+    int getaforo(){
         return aforo_;
     }
-    int getDni(){
+    int getid(){
         return id_;
     }
     string getNombre(){
@@ -84,7 +84,7 @@ class Curso
             return true;
         }
     }
-    bool set_Dni(int id){
+    bool set_id(int id){
         if(id ==999){
             return false;
         }
@@ -117,9 +117,7 @@ class Curso
         coordinador_=coordinador;
     }
 
-
-    //funciones
-    vector<Curso> modificarVector(vector<Curso> p,int modificar);
+    
 
 
 };
