@@ -66,6 +66,7 @@ public:
 
         string datoLeido;
         int id, edad;
+        string edadString, idString;
         string nombre, apellidos, correo, lugar, Dni;
         while (getline(f, datoLeido, ';'))
         {
@@ -75,13 +76,13 @@ public:
             getline(f, datoLeido, ';');
             apellidos = datoLeido;
             getline(f, datoLeido, ';');
-            edad = stoi(datoLeido);
+            edadString = to_string(edad);
             getline(f, datoLeido, ';');
             lugar = datoLeido;
             getline(f, datoLeido, ';');
             correo = datoLeido;
             getline(f, datoLeido, '\n');
-            id = stoi(datoLeido);
+            idString = to_string(id);
             Persona aux(Dni, nombre, apellidos, edad, lugar, correo, id);
             // 31885014e;alvaro;serrano;19;Cordoba;i12seloa@uco.es;2
             personas_.push_back(aux);
@@ -197,7 +198,12 @@ public:
         Curso c1;
         cout << "Introduzca el id del nuevo curso: \n";
         cin >> id;
-        c1.set_id(id);
+        if ((c1.set_id(id, cursos_)) == false)
+        {
+            cout << "Este id ya ha sido utilizado por otro curso, pruebe con otro id.\n\n";
+            insertarCurso();
+        }
+
         cout << "Introduzca el precio del nuevo curso: \n";
         cin >> precio;
         c1.set_Precio(precio);
@@ -226,23 +232,36 @@ public:
         int id, edad;
         string nombre, apellidos, correo, lugar, Dni;
         Persona p1;
+        cout << "Introduzca el DNI del nuevo participante: \n ";
+        cin >> Dni;
+        if ((p1.setDni(Dni, personas_)) == false)
+        {
+            for (int i = 0; i < 99; i++)
+            {
+                if ((p1.setDni(Dni, personas_)) == false)
+                {
+                    cout << "Este DNI ya pertenece a otra persona, introduzca el DNI correcto: \n";
+                    cin >> Dni;
+                }
+            
+            }
+
+        }
+
         cout << "Introduzca el nombre del nuevo participante: \n";
         cin.ignore();
         getline(cin, nombre);
         p1.setNombre(nombre);
         cout << "Introduzca los apellidos del nuevo participante: \n";
-        cin.ignore();
         getline(cin, apellidos);
         p1.setApellidos(apellidos);
         cout << "Introduzca el correo del nuevo participante: \n";
         cin >> correo;
         p1.setCorreo(correo);
         cout << "Introduzca el lugar de residencia del nuevo participante: \n";
-        cin >> lugar;
+        cin.ignore();
+        getline(cin, lugar);
         p1.setLugar(lugar);
-        cout << "Introduzca el dni del nuevo participante: \n";
-        cin >> Dni;
-        p1.setDni(Dni);
         cout << "Introduzca la edad del nuevo participante: \n";
         cin >> edad;
         p1.setEdad(edad);
@@ -357,10 +376,9 @@ public:
                     cout << "2--->Apellidos\n";
                     cout << "3--->Correo\n";
                     cout << "4--->Lugar de Residencia\n";
-                    cout << "5--->DNI\n";
-                    cout << "6--->Edad\n";
-                    cout << "7--->Id del curso al que pertenece\n";
-                    cout << "8--->Salir\n";
+                    cout << "5--->Edad\n";
+                    cout << "6--->Id del curso al que pertenece\n";
+                    cout << "7--->Salir\n";
                     cin >> op;
                     system("clear");
                     switch (op)
@@ -392,28 +410,22 @@ public:
                         (*it).setLugar(cambiarS);
                         system("clear");
                         break;
-                    case 5:
-                        cout << "Introduzca el nuevo DNI: ";
-                        cin >> cambiarS;
-                        (*it).setDni(cambiarS);
-                        system("clear");
-                        break;
 
-                    case 6:
+                    case 5:
                         cout << "Introduzca la nueva edad: ";
                         cin >> cambiarI;
                         (*it).setEdad(cambiarI);
                         system("clear");
                         break;
 
-                    case 7:
+                    case 6:
                         cout << "Introduzca el id del nuevo curso al que pertenece: ";
                         cin >> cambiarI;
                         (*it).setId(cambiarI);
                         system("clear");
                         break;
 
-                    case 8:
+                    case 7:
                         repetir = false;
                         break;
                     }

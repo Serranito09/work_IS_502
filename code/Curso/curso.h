@@ -85,14 +85,13 @@ class Curso
             return true;
         }
     }
-    bool set_id(int id){
-        if(id ==999){
+    bool set_id(int id,vector<Curso> c){
+      for(auto it=c.begin();it!=c.end();it++){
+        if(((*it).getid())==id){
             return false;
         }
-        else{
-            id_=id;
-            return true;
-        }
+      }
+      return true;
     }
     bool set_nombre(string nombre){
         if(nombre ==" "){

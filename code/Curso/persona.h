@@ -67,14 +67,18 @@ class Persona
     }
 
     //modificadores
-    bool setDni(string dni){
+    bool setDni(string dni,vector<Persona> p){
         if(dni==""){
             return false;
         }
-        else{
-            Dni_=dni;
-            return true;
+        for(auto it=p.begin();it!=p.end();it++){
+            if(((*it).getDni())==dni){
+                return false;
+            }
+            
         }
+        Dni_=dni;
+        return true;
     }
     void setNombre(string nombre){
         nombre_=nombre;
@@ -89,7 +93,7 @@ class Persona
         }
         else{
             edad_=edad;
-            return false;
+            return true;
         }
     }
     bool setLugar(string lugar){

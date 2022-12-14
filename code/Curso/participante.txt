@@ -1,4 +1,2 @@
-31885014E;alvaro;serrano;19;Cordoba;i12seloa@uco.es;4
-42839532L;arturo;vicente;83;Priego;i12vipea@uco.es;0
-49507943Y;Alberto;Quesada;19;Cordoba;i12quvaa@uco.es;0
-31885015P;Diego;Serrano Lopez;17;Cordoba;diegoserrano0208@gmail.com;4
+1231231;alvaro;serrano;0;cordoba;serranoputero@.com;0
+123123;pepe;el de los palotes;0;españistan;pepe@pepe.com;2
