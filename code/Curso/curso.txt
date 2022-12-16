@@ -1,5 +1,0 @@
-4;mates con albvaro;beltza;-6;na pequeña intro;1;4.4
-5;ip;manolo;2;bamos que nos vamos;1;3.4
-2;arturo el de los palotes;jose;3;que si arturo chocapic;1;24
-56;mamawebo;manolo;34;que asaaa;1;23
-78;alberto porfavor;manas;45;esto va bien;345;34.6
