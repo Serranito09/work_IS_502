@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void BD::menu()
+void BD::menu(vector<Curso> *curso,vector<Persona> *persona)
 {
   int opcion;
 
@@ -30,35 +30,35 @@ void BD::menu()
     case 1:
       cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
-      menu_administrador();
+      menu_administrador(curso,persona);
       system("clear");
       break;
 
     case 2:
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
            << endl;
-      menu_participante();
+      menu_participante(curso,persona);
       system("clear");
       break;
 
     case 3:
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
            << endl;
-      menu_coordinador_de_cursos();
+      menu_coordinador_de_cursos(curso,persona);
       system("clear");
       break;
 
     case 4:
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO VISITANTE\n"
            << endl;
-      menu_visitante();
+      menu_visitante(curso,persona);
       system("clear");
       break;
 
     case 5:
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
            << endl;
-      menu_coordinador_de_recursos();
+      //menu_coordinador_de_recursos(*curso,*persona);
       system("clear");
       break;
     case 0:
@@ -70,7 +70,7 @@ void BD::menu()
 }
 
 // MENU DEL ADMINISTRADOR
-void BD::menu_administrador()
+void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
 {
 
   int tecla;
@@ -100,7 +100,7 @@ void BD::menu_administrador()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
-      mostrarCursos();
+      mostrarCursos(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -111,7 +111,7 @@ void BD::menu_administrador()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN AÑADIR CURSOS
-      insertarCurso();
+      insertarCurso(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -125,7 +125,7 @@ void BD::menu_administrador()
       cin >> modificar;
      
       // FUNCIÓN ELIMINAR CURSOS
-      if (eliminar(modificar) == true)
+      if (eliminar(modificar,curso) == true)
       {
         cout << "Ha sido eliminado con éxito\n\n";
       }
@@ -145,7 +145,7 @@ void BD::menu_administrador()
       // FUNCIÓN MODIFICAR CURSOS
       cout << "Introduzca la id del curso que desea modificar: \n";
       cin >> modificar;
-       if (modificarCursos(modificar) == true)
+       if (modificarCursos(modificar,curso) == true)
       {
         cout << "Ha sido modificado con éxito\n\n";
       }
@@ -163,7 +163,7 @@ void BD::menu_administrador()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN DE MOSTRAR PARTICIPANTES
-      mostrarParticipantes();
+      mostrarParticipantes(persona);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -175,7 +175,7 @@ void BD::menu_administrador()
            << endl;
       // FUNCIÓN DE AÑADIR PARTICIPANTES
 
-      insertarParticipante();
+      insertarParticipante(persona,curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -187,7 +187,7 @@ void BD::menu_administrador()
       // FUNCIÓN DE MODIFICAR PARTICIPANTES
       cout << "Introduzca el dni del participante que desea modificar: \n";
       cin >> modificarp;
-      modificarParticipante(modificarp);
+      modificarParticipante(modificarp,persona,curso);
       cout << "0.VOLVER AL MENÚ" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -199,8 +199,9 @@ void BD::menu_administrador()
            << endl;
       cout << "Introduzca el dni del participante que desea eliminar: \n";
       cin >> modificarp;
-      // FUNCIÓN ELIMINAR PARTICIPANTES
-      if (eliminarP(modificarp) == true)
+      //FUNCIÓN ELIMINAR PARTICIPANTES
+      
+      if (eliminarP(modificarp,persona) == true)
       {
         cout << "Ha sido eliminado con éxito\n\n";
       }
@@ -208,6 +209,8 @@ void BD::menu_administrador()
       {
         cout << "No ha podido eliminarse el participante\n";
       }
+      
+      
       cout << "0.VOLVER AL MENÚ" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -223,7 +226,7 @@ void BD::menu_administrador()
 }
 
 // MENU PARTICIPANTE
-void BD::menu_participante()
+void BD::menu_participante(vector<Curso> *curso, vector<Persona> *persona)
 {
   int id;
   string Dni;
@@ -249,7 +252,7 @@ void BD::menu_participante()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
-      mostrarCursos();
+      mostrarCursos(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -264,7 +267,7 @@ void BD::menu_participante()
       cin >> Dni;
       cout << "Introduzca el id del curso desea inscribirse\n ";
       cin >> id;
-      if (inscribirseCurso(id, Dni) == true)
+      if (inscribirseCurso(id, Dni,curso,persona) == true)
       {
         cout << "Ha sido inscrito con éxito\n\n";
       }
@@ -295,7 +298,7 @@ void BD::menu_participante()
       // FUNCIÓN VER CURSO INSCRITO
       cout << "Introduzca su DNI: \n";
       cin >> Dni;
-      mostrarCaP(Dni);
+      //mostrarCaP(Dni,persona);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -311,7 +314,7 @@ void BD::menu_participante()
 }
 
 // MENU VISITANTE
-void BD::menu_visitante()
+void BD::menu_visitante(vector<Curso> *curso, vector<Persona> *persona)
 {
   int tecla;
   int opcion;
@@ -334,7 +337,7 @@ void BD::menu_visitante()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO VISITANTE\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
-      mostrarCursos();
+      mostrarCursos(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -361,7 +364,7 @@ void BD::menu_visitante()
 }
 
 // MENU CC
-void BD::menu_coordinador_de_cursos()
+void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *persona)
 {
   int id;
   int tecla;
@@ -388,7 +391,7 @@ void BD::menu_coordinador_de_cursos()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSOS\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
-      mostrarCursos();
+      mostrarCursos(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -399,7 +402,7 @@ void BD::menu_coordinador_de_cursos()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
            << endl;
       // FUNCIÓN DE AÑADIR CURSOS
-      insertarCurso();
+      insertarCurso(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -412,7 +415,7 @@ void BD::menu_coordinador_de_cursos()
       cout << "Introduzca la id del curso que desea eliminar: \n";
       cin >> modificar;
       // FUNCIÓN ELIMINAR CURSOS
-      if (eliminar(modificar) == true)
+      if (eliminar(modificar,curso) == true)
       {
         cout << "Ha sido eliminado con éxito\n\n";
       }
@@ -432,7 +435,7 @@ void BD::menu_coordinador_de_cursos()
       // FUNCIÓN MODIFICAR CURSOS
       cout << "Introduzca la id del curso que desea modificar: \n";
       cin >> modificar;
-           if (modificarCursos(modificar) == true)
+           if (modificarCursos(modificar,curso) == true)
       {
         cout << "Ha sido modificado con éxito\n\n";
       }
@@ -452,7 +455,7 @@ void BD::menu_coordinador_de_cursos()
       // FUNCIÓN MOSTRAR ALUMNOS DE UN CURSO
       cout << "Introduzca el id del curso del que desea ver los participantes: \n";
       cin >> id;
-      mostrarCP(id);
+      //mostrarCP(id);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -478,7 +481,7 @@ void BD::menu_coordinador_de_cursos()
 }
 
 // MENU CR
-void BD::menu_coordinador_de_recursos()
+void BD::menu_coordinador_de_recursos(vector<Curso> *curso, vector<Persona> *persona)
 {
 
   int tecla;
@@ -502,7 +505,7 @@ void BD::menu_coordinador_de_recursos()
       cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
-      mostrarCursos();
+      mostrarCursos(curso);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -515,7 +518,7 @@ void BD::menu_coordinador_de_recursos()
       // FUNCIÓN ASIGNAR RECURSOS
       cout << "Introduzca la id del curso al que desea asignar recursos: \n";
       cin >> modificar;
-           if (modificarR(modificar) == true)
+           if (modificarR(modificar,curso) == true)
       {
         cout << "Ha sido modificado con éxito\n\n";
       }
@@ -546,3 +549,5 @@ void BD::menu_coordinador_de_recursos()
     }
   } while (repetir);
 }
+
+

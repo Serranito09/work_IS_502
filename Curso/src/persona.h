@@ -86,14 +86,8 @@ class Persona
         apellidos_=apellidos;
     }
     
-    bool setEdad(int edad){
-        if(edad>99 || edad<16){
-            return false;
-        }
-        else{
-            edad_=edad;
-            return true;
-        }
+    void setEdad(int edad){
+        edad_=edad;
     }
     bool setLugar(string lugar){
         if(lugar==""){
@@ -107,8 +101,15 @@ class Persona
     void setCorreo(string correo){
         correo_=correo;
     }
-    void setId(int id){
-        id_=id;
+    bool setId(int id,vector<Curso> *c){
+        for(auto it=(*c).begin();it!=(*c).end();it++){
+            if((*it).getid()==id){
+                id_=id;
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
