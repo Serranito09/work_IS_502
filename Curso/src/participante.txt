@@ -1,4 +1,4 @@
 1231231;alvaro;serrano;18;cordoba;serranoputero@.com;78;3
 123123;pepe;el de los palotes;34;españistan;pepe@pepe.com;4;2
 31885014E;alvaro;serrano lopez;24;Cordoba;i12seloa@uco.es;78;1
-31885015P;diego;serrano lopez;22;Cordoba;i12selod@uco.es;4;2
+31885015P;diego;serrano lopez;22;Cordoba;i12selod@uco.es;4;4

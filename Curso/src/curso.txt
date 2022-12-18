@@ -1,2 +1,2 @@
-4;mates con albvaro;beltza;-6;na pequeña intro;1;4.4;ola
-78;alberto porfavor;manas;45;esto va bien;345;34.6;ola
+4;matematicas aplicadas a figuras;Antonio Ariza Jurado;01/12/23;matematicas muy dificiles;30;4.4;aula
+78;Programacion orientada a objetos;Alba Maria Cabrera;05/10/23;Introduccion al mundo de la Programacion;50;34.6;proyector

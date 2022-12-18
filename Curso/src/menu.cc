@@ -70,6 +70,7 @@ void BD::menu(vector<Curso> *curso,vector<Persona> *persona)
     {
         rol=p1.ComprobarRol(Dni,(persona));
     }
+    system("clear");
 
 
     if(rol==1){
@@ -109,6 +110,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
   bool repetir = true;
   do
   {
+     cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n";
     cout << "1.VER CURSOS" << endl;
     cout << "2.AÑADIR CURSOS" << endl;
     cout << "3.ELIMINAR CURSOS" << endl;
