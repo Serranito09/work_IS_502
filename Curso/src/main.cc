@@ -16,8 +16,8 @@ int main()
   char fichero[] = "curso.txt";
   char fichero1[] = "participante.txt";
   BD bd;
-  bd.nfP(fichero1,p);
-  bd.nfC(fichero,c); // vuelco el fichero en un vector
+  bd.nfP(fichero1,&p);
+  bd.nfC(fichero,&c); // vuelco el fichero en un vector
   bd.menu(&c,&p);
   bd.backupP(fichero1,p);
   bd.backupC(fichero,c);

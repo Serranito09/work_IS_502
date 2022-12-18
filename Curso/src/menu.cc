@@ -8,66 +8,95 @@ using namespace std;
 
 void BD::menu(vector<Curso> *curso,vector<Persona> *persona)
 {
-  int opcion;
-
-  bool repetir = true;
-  do
-  {
+     string Dni;
+     Persona p1;
+     int opcion,tecla;
+     bool repetir=true;
+     do{
     cout << "CURSOS DE EXTENSIÓN" << endl;
-    cout << "1.ADMINISTRADOR" << endl;
-    cout << "2.PARTICIPANTE" << endl;
-    cout << "3.COORDINADOR DE CURSOS" << endl;
-    cout << "4.VISITANTE" << endl;
-    cout << "5.COORDINADOR DE RECURSOS" << endl;
-    cout << "0.SALIR" << endl;
-
-    cout << "\nIngrese su rol: ";
-    cin >> opcion;
+    cout<<"1--->LOGIN\n";
+    cout<<"2--->VISITANTE\n";
+    cout<<"3--->SALIR DEL SISTEMA\n";
+    cin>>opcion;
     system("clear");
 
     switch (opcion)
     {
     case 1:
-      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
-           << endl;
-      menu_administrador(curso,persona);
-      system("clear");
+     cout << "CURSOS DE EXTENSIÓN---LOGIN" << endl;
+     login(persona,curso);
+     cout<<"0---SALIR\n";
+     cin>>tecla;
+     system("clear");
+      
       break;
-
+    
     case 2:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
-           << endl;
-      menu_participante(curso,persona);
-      system("clear");
-      break;
-
-    case 3:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
-           << endl;
-      menu_coordinador_de_cursos(curso,persona);
-      system("clear");
-      break;
-
-    case 4:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO VISITANTE\n"
-           << endl;
-      menu_visitante(curso,persona);
-      system("clear");
-      break;
-
-    case 5:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
-           << endl;
-      //menu_coordinador_de_recursos(*curso,*persona);
-      system("clear");
-      break;
+    cout << "CURSOS DE EXTENSIÓN---MODO VISITANTE" << endl;
+     menu_visitante(curso,persona);
+     system("clear");
+     break;
     case 0:
-      repetir = false;
+     repetir=false;
+    default:
+      opcion=0;
       break;
+
+    }
+    }while(repetir);
+}
+    
+
+
+
+  void BD::login(vector<Persona> *persona,vector<Curso>*curso){
+    string Dni;
+    Persona p1;
+    cout << "\nIngrese su Dni: ";
+    cin >> Dni;
+    int rol;
+    if ((p1.ComprobarDni(Dni,*persona) == false))
+    {
+        for (int i = 0; i < 99; i++)
+        {
+            if ((p1.ComprobarDni(Dni,*persona)) == false)
+            {
+                cout << "Este DNI no esta registrado, introduzca un Dni registrado,en caso de no estar registrado contacte con el administrador: \n";
+                cin >> Dni;
+            }
+        }
+    }
+    else
+    {
+        rol=p1.ComprobarRol(Dni,(persona));
     }
 
-  } while (repetir);
-}
+
+    if(rol==1){
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n";
+      menu_administrador(curso,persona);
+    }
+
+    if(rol==2){
+      cout << "CURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n";
+      menu_participante(curso,persona);
+    }
+
+   if(rol==3){
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n";
+      menu_coordinador_de_cursos(curso,persona);
+   }
+    
+
+   if(rol==4){
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n";
+      menu_coordinador_de_recursos(curso,persona);
+   }
+   if(rol==0){
+    cout<<"ERROR\n";
+   }
+
+    }
 
 // MENU DEL ADMINISTRADOR
 void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
@@ -97,7 +126,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
     switch (opcion)
     {
     case 1:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
       mostrarCursos(curso);
@@ -108,7 +137,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 2:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN AÑADIR CURSOS
       insertarCurso(curso);
@@ -119,7 +148,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 3:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       cout << "Introduzca la id del curso que desea eliminar: \n";
       cin >> modificar;
@@ -140,7 +169,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 4:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN MODIFICAR CURSOS
       cout << "Introduzca la id del curso que desea modificar: \n";
@@ -160,7 +189,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 5:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN DE MOSTRAR PARTICIPANTES
       mostrarParticipantes(persona);
@@ -171,7 +200,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 6:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN DE AÑADIR PARTICIPANTES
 
@@ -182,7 +211,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       system("clear");
       break;
     case 7:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       // FUNCIÓN DE MODIFICAR PARTICIPANTES
       cout << "Introduzca el dni del participante que desea modificar: \n";
@@ -195,7 +224,7 @@ void BD::menu_administrador(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 8:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO ADMINISTRADOR\n"
            << endl;
       cout << "Introduzca el dni del participante que desea eliminar: \n";
       cin >> modificarp;
@@ -249,7 +278,7 @@ void BD::menu_participante(vector<Curso> *curso, vector<Persona> *persona)
     switch (opcion)
     {
     case 1:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
       mostrarCursos(curso);
@@ -260,7 +289,7 @@ void BD::menu_participante(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 2:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
            << endl;
       // FUNCIÓN INSCRIPCIÓN EN CURSOS
       cout << "Introduzca su DNI:\n";
@@ -283,7 +312,7 @@ void BD::menu_participante(vector<Curso> *curso, vector<Persona> *persona)
 
     case 3:
       // FUNCIÓN CONTACTO ADMINISTRADOR
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
            << endl;
       cout << "Álvaro David Serrano López" << endl;
       cout << "i12seloa@uco.es" << endl;
@@ -293,12 +322,12 @@ void BD::menu_participante(vector<Curso> *curso, vector<Persona> *persona)
       break;
 
     case 4:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO PARTICIPANTE\n"
            << endl;
       // FUNCIÓN VER CURSO INSCRITO
       cout << "Introduzca su DNI: \n";
       cin >> Dni;
-      //mostrarCaP(Dni,persona);
+      mostrarCaP(Dni,curso,persona);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -334,7 +363,7 @@ void BD::menu_visitante(vector<Curso> *curso, vector<Persona> *persona)
     switch (opcion)
     {
     case 1:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO VISITANTE\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO VISITANTE\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
       mostrarCursos(curso);
@@ -346,7 +375,7 @@ void BD::menu_visitante(vector<Curso> *curso, vector<Persona> *persona)
 
     case 2:
       // FUNCIÓN CONTACTO ADMINISTRADOR
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO VISITANTE\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO VISITANTE\n"
            << endl;
       cout << "Álvaro David Serrano López" << endl;
       cout << "i12seloa@uco.es" << endl;
@@ -388,8 +417,7 @@ void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *perso
     switch (opcion)
     {
     case 1:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSOS\n"
-           << endl;
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSOS\n";
       // FUNCIÓN DE MOSTRAR CURSOS
       mostrarCursos(curso);
       cout << "0. SALIR" << endl;
@@ -399,8 +427,7 @@ void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *perso
       break;
 
     case 2:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
-           << endl;
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n";
       // FUNCIÓN DE AÑADIR CURSOS
       insertarCurso(curso);
       cout << "0. SALIR" << endl;
@@ -410,8 +437,7 @@ void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *perso
       break;
 
     case 3:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
-           << endl;
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n\n";
       cout << "Introduzca la id del curso que desea eliminar: \n";
       cin >> modificar;
       // FUNCIÓN ELIMINAR CURSOS
@@ -430,7 +456,7 @@ void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *perso
       break;
 
     case 4:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
+      cout<<"CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
            << endl;
       // FUNCIÓN MODIFICAR CURSOS
       cout << "Introduzca la id del curso que desea modificar: \n";
@@ -450,12 +476,12 @@ void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *perso
       break;
 
     case 5:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
            << endl;
       // FUNCIÓN MOSTRAR ALUMNOS DE UN CURSO
       cout << "Introduzca el id del curso del que desea ver los participantes: \n";
       cin >> id;
-      //mostrarCP(id);
+      mostrarCP(id,curso,persona);
       cout << "0. SALIR" << endl;
       cout << "\nIngrese una opcion: ";
       cin >> tecla;
@@ -464,7 +490,7 @@ void BD::menu_coordinador_de_cursos(vector<Curso> *curso, vector<Persona> *perso
 
     case 6:
       // FUNCIÓN CONTACTO ADMINISTRADOR
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE CURSO\n"
            << endl;
       cout << "Álvaro David Serrano López" << endl;
       cout << "i12seloa@uco.es" << endl;
@@ -502,7 +528,7 @@ void BD::menu_coordinador_de_recursos(vector<Curso> *curso, vector<Persona> *per
     switch (opcion)
     {
     case 1:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
            << endl;
       // FUNCIÓN DE MOSTRAR CURSOS
       mostrarCursos(curso);
@@ -513,7 +539,7 @@ void BD::menu_coordinador_de_recursos(vector<Curso> *curso, vector<Persona> *per
       break;
 
     case 2:
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
            << endl;
       // FUNCIÓN ASIGNAR RECURSOS
       cout << "Introduzca la id del curso al que desea asignar recursos: \n";
@@ -534,7 +560,7 @@ void BD::menu_coordinador_de_recursos(vector<Curso> *curso, vector<Persona> *per
 
     case 3:
       // FUNCIÓN CONTACTO ADMINISTRADOR
-      cout << "\n\nCURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
+      cout << "CURSOS DE EXTENSIÓN---MODO COORDINADOR DE RECURSOS\n"
            << endl;
       cout << "Álvaro David Serrano López" << endl;
       cout << "i12seloa@uco.es" << endl;

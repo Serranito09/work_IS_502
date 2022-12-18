@@ -12,11 +12,9 @@ using namespace std;
 class BD
 {
 private:
-  
-
 public:
-    void nfC(char *nombreFichero,vector<Curso>curso);
-    void nfP(char *nombreFichero,vector<Persona>persona);
+    void nfC(char *nombreFichero, vector<Curso> *curso);
+    void nfP(char *nombreFichero, vector<Persona> *persona);
     void mostrarParticipantes(vector<Persona> *personas);
     void mostrarCursos(vector<Curso> *curso);
     bool modificarCursos(int modificar, vector<Curso> *curso);
@@ -25,8 +23,8 @@ public:
     bool insertarCurso(vector<Curso> *curso);
     void insertarParticipante(vector<Persona> *personas, vector<Curso> *curso);
     bool inscribirseCurso(int id, string Dni, vector<Curso> *curso, vector<Persona> *personas);
-    void mostrarCaP(string Dni, vector<Curso> curso, vector<Persona> personas);
-    void mostrarCP(int id, vector<Curso> curso, vector<Persona> personas);
+    void mostrarCaP(string Dni, vector<Curso> *curso, vector<Persona> *personas);
+    void mostrarCP(int id, vector<Curso> *curso, vector<Persona> *personas);
     void backupC(char *nombreFichero, vector<Curso> curso);
     void backupP(char *nombreFichero, vector<Persona> personas);
     void menu(vector<Curso> *curso, vector<Persona> *persona);
@@ -37,7 +35,8 @@ public:
     void menu_coordinador_de_recursos(vector<Curso> *curso, vector<Persona> *persona);
     void modificarParticipante(string modificarp, vector<Persona> *personas, vector<Curso> *curso);
     bool eliminarP(string modificarp, vector<Persona> *personas);
-    bool Contacto();
+  void login(vector<Persona> *persona,vector<Curso>*curso);
+     
 };
 
 #endif

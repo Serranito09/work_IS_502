@@ -7,10 +7,9 @@
 #include <vector>
 using namespace std;
 
-
 class Persona
 {
-    private:
+private:
     string Dni_;
     string nombre_;
     string apellidos_;
@@ -18,103 +17,120 @@ class Persona
     string lugar_;
     string correo_;
     int id_;
+    int rol_;
 
-    public:
-    Persona(string Dni="empty",string nombre="empty",string apellidos="empty",int edad=0,string lugar="empty",string correo="empty",int id=0){
-        Dni_=Dni;
-        nombre_=nombre;
-        apellidos_=apellidos;
-        edad_=edad;
-        lugar_=lugar;
-        correo_=correo;
-        id_=id;
-
+public:
+    Persona(string Dni = "empty", string nombre = "empty", string apellidos = "empty", int edad = 0, string lugar = "empty", string correo = "empty", int id = 0, int rol = 0)
+    {
+        Dni_ = Dni;
+        nombre_ = nombre;
+        apellidos_ = apellidos;
+        edad_ = edad;
+        lugar_ = lugar;
+        correo_ = correo;
+        id_ = id;
+        rol_ = rol;
     }
-    //observadores
-    int getId(){
+    // observadores
+    int getRol()
+    {
+        return rol_;
+    }
+    int getId()
+    {
         return id_;
     }
-    string getDni(){
+    string getDni()
+    {
         return Dni_;
     }
-    string getNombreP(){
+    string getNombreP()
+    {
         return nombre_;
     }
-    string getApellidos(){
+    string getApellidos()
+    {
         return apellidos_;
     }
-    string getfullName(){
-        return nombre_+"  "+apellidos_;
+    string getfullName()
+    {
+        return nombre_ + "  " + apellidos_;
     }
-    int getEdad(){
+    int getEdad()
+    {
         return edad_;
     }
-    string getLugar(){
+    string getLugar()
+    {
         return lugar_;
     }
-    string getCorreo(){
+    string getCorreo()
+    {
         return correo_;
     }
 
-    string getFulldata(){
-        return "DNI: "+Dni_+"\n"
-        +"Nombre completo: "+getfullName()+"\n"
-        +"Correo: "+correo_+"\n"
-        +"Edad: "+ to_string(edad_)+"\n"
-        +"Lugar de residencia: "+lugar_+"\n" 
-        +"id curso: "+to_string(id_)+"\n\n";
+    string getFulldata()
+    {
+        return "DNI: " + Dni_ + "\n" + "Nombre completo: " + getfullName() + "\n" + "Correo: " + correo_ + "\n" + "Edad: " + to_string(edad_) + "\n" + "Lugar de residencia: " + lugar_ + "\n" + "id curso: " + to_string(id_) + "\n\n";
     }
 
-    //modificadores
-    bool setDni(string dni,vector<Persona> p){
-        if(dni=="" || dni==" " ){
-            return false;
-        }
-        for(auto it=p.begin();it!=p.end();it++){
-            if(((*it).getDni())==dni){
-                return false;
-            }
-            
-        }
-        Dni_=dni;
-        return true;
+    // modificadores
+    void setDni(string dni)
+    {
+        Dni_ = dni;
     }
-    void setNombre(string nombre){
-        nombre_=nombre;
+    void setNombre(string nombre)
+    {
+        nombre_ = nombre;
     }
-    void setApellidos(string apellidos){
-        apellidos_=apellidos;
+    void setApellidos(string apellidos)
+    {
+        apellidos_ = apellidos;
     }
-    
-    void setEdad(int edad){
-        edad_=edad;
+
+    void setEdad(int edad)
+    {
+        edad_ = edad;
     }
-    bool setLugar(string lugar){
-        if(lugar==""){
-            return false;
-        }
-        else{
-            lugar_=lugar;
-            return true;
-        }
+    void setLugar(string lugar)
+    {
+
+        lugar_ = lugar;
     }
-    void setCorreo(string correo){
-        correo_=correo;
+    void setCorreo(string correo)
+    {
+        correo_ = correo;
     }
-    bool setId(int id,vector<Curso> *c){
-        for(auto it=(*c).begin();it!=(*c).end();it++){
-            if((*it).getid()==id){
-                id_=id;
+    void setId(int id)
+    {
+        id_ = id;
+    }
+    void setRol(int rol)
+    {
+        rol_ = rol;
+    }
+
+    bool ComprobarDni(string dni, vector<Persona> p)
+    {
+        for (auto it = p.begin(); it != p.end(); it++)
+        {
+            if (((*it).getDni()) == dni)
+            {
                 return true;
             }
         }
-
         return false;
     }
-
-
+    int ComprobarRol(string dni,vector<Persona>*p)
+    {
+        for(auto it=(*p).begin();it!=(*p).end();it++){
+            if((*it).getDni()==dni){
+                return (*it).getRol();
+            }
+        }
+        return 0;
+    
+    }
 };
-
-
 
 #endif
