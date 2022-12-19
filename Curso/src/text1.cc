@@ -18,11 +18,9 @@ TEST(ComprobarID,P02){
     Curso c2(2);
     c1.push_back(c);
     c1.push_back(c2);
-    EXPECT_TRUE(c.comprobarID(3,&c1));
-    EXPECT_FALSE(c.comprobarID(1,&c1));
-    EXPECT_FALSE(c.comprobarID(2,&c1));
-     EXPECT_FALSE(c.comprobarID(0,&c1));
-
+    EXPECT_FALSE(c.comprobarID(3,&c1));
+    EXPECT_TRUE(c.comprobarID(1,&c1));
+    EXPECT_TRUE(c.comprobarID(2,&c1));
 }
 
 

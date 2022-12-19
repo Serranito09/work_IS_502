@@ -130,18 +130,15 @@ public:
 
     bool comprobarID(int id, vector<Curso> *c)
     {
-        if(id==0){
-            return false;
-        }
         for (auto it = (*c).begin(); it != (*c).end(); it++)
         {
-            if ((*it).getid() == id)
+            if ((*it).getid() == id || id==0)
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 };
 

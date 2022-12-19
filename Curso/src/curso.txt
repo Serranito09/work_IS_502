@@ -1,2 +1,3 @@
-4;matematicas aplicadas a figuras;Antonio Ariza Jurado;01/12/23;matematicas muy dificiles;30;4.4;aula
-78;Programacion orientada a objetos;Alba Maria Cabrera;05/10/23;Introduccion al mundo de la Programacion;50;34.6;proyector
+4;Matematicas;Roberto trillo Lopez;25/12/22;En este curso se impartira las diferentes maneras de analizar los problemas del mundo real;40;45.4;proyector
+1;Fisica;Alejandro Ramirez Perez;1/1/23;ciencia que estudia las interacciones fundamentales en la naturaleza, desde lo microscópico a lo macroscópico;40;34.6;vacio
+2;Ingenieria Orientada a Objetos;Francisco Palomino Lara;2/2/23;Disciplina y profesión que aplica los conocimientos técnicos y científicos y utiliza las leyes naturales y los recursos físicos;15;23;camara

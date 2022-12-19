@@ -54,7 +54,7 @@ void BD::nfP(char *nombreFichero, vector<Persona> *persona)
     }
 
     string datoLeido;
-    int id, edad,rol;
+    int id, edad, rol;
     string nombre, apellidos, correo, lugar, Dni;
     while (getline(f, datoLeido, ';'))
     {
@@ -71,9 +71,9 @@ void BD::nfP(char *nombreFichero, vector<Persona> *persona)
         correo = datoLeido;
         getline(f, datoLeido, ';');
         id = stoi(datoLeido);
-        getline(f,datoLeido,'\n');
-        rol=stoi(datoLeido);
-        Persona aux(Dni, nombre, apellidos, edad, lugar, correo,id,rol);
+        getline(f, datoLeido, '\n');
+        rol = stoi(datoLeido);
+        Persona aux(Dni, nombre, apellidos, edad, lugar, correo, id, rol);
 
         (*persona).push_back(aux);
     }
@@ -110,14 +110,14 @@ bool BD::modificarCursos(int modificar, vector<Curso> *curso)
             do
             {
                 cout << "Introduzca el número correspondiente al parámetro que desee modificar: \n\n";
-                cout << "1--->Fecha de inicio\n";
-                cout << "2--->Precio\n";
-                cout << "3--->Nombre\n";
-                cout << "4--->Descripcion\n";
-                cout << "5--->Coordinador\n";
-                cout << "6--->Aforo\n";
-                cout << "7--->Recursos\n";
-                cout << "8--->Salir\n";
+                cout << "1.Fecha de inicio\n";
+                cout << "2.Precio\n";
+                cout << "3.Nombre\n";
+                cout << "4.Descripcion\n";
+                cout << "5.Coordinador\n";
+                cout << "6.Aforo\n";
+                cout << "7.Recursos\n";
+                cout << "8.Salir\n";
                 cin >> op;
                 system("clear");
                 switch (op)
@@ -206,9 +206,9 @@ bool BD::modificarR(int modificar, vector<Curso> *curso)
             do
             {
                 cout << "Introduzca el número correspondiente al parámetro que desee modificar: \n\n";
-                cout << "1--->Recursos\n";
-                cout << "2--->Aforo\n";
-                cout << "3--->Salir\n";
+                cout << "1.Recursos\n";
+                cout << "2.Aforo\n";
+                cout << "3.Salir\n";
                 cin >> op;
                 system("clear");
                 switch (op)
@@ -224,6 +224,7 @@ bool BD::modificarR(int modificar, vector<Curso> *curso)
 
                 case 2:
                     cout << "Introduzca el nuevo aforo: ";
+                    cin >> cambiarI;
                     if (c1.comprobarAforo(cambiarI) == false)
                     {
                         for (int i = 0; i < 99; i++)
@@ -253,10 +254,12 @@ bool BD::modificarR(int modificar, vector<Curso> *curso)
     return false;
 }
 // Funcion para eliminar un registro
-bool BD::eliminar(int modificar, vector<Curso> *curso){
-if(modificar==0){
-    return false;
-}
+bool BD::eliminar(int modificar, vector<Curso> *curso)
+{
+    if (modificar == 0)
+    {
+        return false;
+    }
     for (auto it = ((*curso).begin()); it != ((*curso).end()); it++)
     {
         if (((*it).getid()) == modificar)
@@ -276,14 +279,18 @@ bool BD::insertarCurso(vector<Curso> *curso)
     Curso c1;
     cout << "Introduzca el id del nuevo curso: \n";
     cin >> id;
-    if (c1.comprobarID(id, curso) == false)
+    if (c1.comprobarID(id, curso) == true)
     {
         for (int i = 0; i < 99; i++)
         {
-            if (c1.comprobarID(id, curso) == false)
+            if (c1.comprobarID(id, curso) == true)
             {
                 cout << "error esa id no existe,introduzca una correcta" << endl;
                 cin >> id;
+            }
+            else
+            {
+                c1.set_id(id);
             }
         }
     }
@@ -320,7 +327,15 @@ bool BD::insertarCurso(vector<Curso> *curso)
                 cout << "No se ha podido fijar el aforo, recuerde que este debe ser mayor que 0 y menor e igual que 200,introduzca un nuevo aforo correcto\n";
                 cin >> aforo;
             }
+            else
+            {
+                c1.set_Aforo(aforo);
+            }
         }
+    }
+    else
+    {
+        c1.set_Aforo(aforo);
     }
     cout << "Introduzca los recursos del nuevo curso: \n";
     cin.ignore();
@@ -338,11 +353,11 @@ void BD::insertarParticipante(vector<Persona> *personas, vector<Curso> *curso)
     Curso c1;
     cout << "Introduzca el DNI del nuevo participante: \n ";
     cin >> Dni;
-    if ((p1.ComprobarDni(Dni, (*personas))) == false)
+    if ((p1.ComprobarDni(Dni, (*personas))) == true)
     {
         for (int i = 0; i < 99; i++)
         {
-            if ((p1.ComprobarDni(Dni, (*personas))) == false)
+            if ((p1.ComprobarDni(Dni, (*personas))) == true)
             {
                 cout << "Este DNI ya pertenece a otra persona, introduzca el DNI correcto: \n";
                 cin >> Dni;
@@ -467,7 +482,7 @@ void BD::backupP(char *nombreFichero, vector<Persona> personas)
     for (auto it = personas.begin(); it != personas.end(); it++)
 
     {
-        f << it->getDni() << ";" << it->getNombreP() << ";" << it->getApellidos() << ";" << it->getEdad() << ";" << it->getLugar() << ";" << it->getCorreo() << ";" << it->getId() <<";"<< it->getRol()<< "\n";
+        f << it->getDni() << ";" << it->getNombreP() << ";" << it->getApellidos() << ";" << it->getEdad() << ";" << it->getLugar() << ";" << it->getCorreo() << ";" << it->getId() << ";" << it->getRol() << "\n";
     }
 
     f.close();
@@ -488,13 +503,13 @@ void BD::modificarParticipante(string modificarp, vector<Persona> *personas, vec
             do
             {
                 cout << "Introduzca el número correspondiente al parámetro que desee modificar: \n\n";
-                cout << "1--->Nombre\n";
-                cout << "2--->Apellidos\n";
-                cout << "3--->Correo\n";
-                cout << "4--->Lugar de Residencia\n";
-                cout << "5--->Edad\n";
-                cout << "6--->Id del curso al que pertenece\n";
-                cout << "7--->Salir\n";
+                cout << "1.Nombre\n";
+                cout << "2.Apellidos\n";
+                cout << "3.Correo\n";
+                cout << "4.Lugar de Residencia\n";
+                cout << "5.Edad\n";
+                cout << "6.Id del curso al que pertenece\n";
+                cout << "7.Salir\n";
                 cin >> op;
                 system("clear");
                 switch (op)

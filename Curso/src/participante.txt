@@ -1,4 +1,6 @@
-1231231;alvaro;serrano;18;cordoba;serranoputero@.com;78;3
-123123;pepe;el de los palotes;34;españistan;pepe@pepe.com;4;2
-31885014E;alvaro;serrano lopez;24;Cordoba;i12seloa@uco.es;78;1
-31885015P;diego;serrano lopez;22;Cordoba;i12selod@uco.es;4;4
+49507943Y;Alberto;Quesada Valle;18;Cordoba;i12quvaa@uco.es;1;4
+41507943A;Arturo; Vicente Perez;34;Malaga;vicens@gmail.com;4;3
+31885014E;Álvaro;Serrano López;24;Cordoba;i12seloa@uco.es;1;1
+31885015P;Diego;Serrano López;22;Cordoba;i12selod@uco.es;2;2
+45946399N;Manuel;Mata Uceda;25;Cordoba;i12maloh@uco.es;0;2
+30967844R;Fran;Serrano Rodriguez;15;Cordoba;i12frew@uco.es;0;2

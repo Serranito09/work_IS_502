@@ -8,6 +8,7 @@ using namespace std;
 
 int main()
 {
+  system("clear");
   int op, cambiarI, modificar;
   string cambiarS; // variables para cambiar datos
   Curso c1;        // objeto curso
