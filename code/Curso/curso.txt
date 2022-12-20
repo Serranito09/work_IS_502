@@ -1,3 +1,0 @@
-4;Matematicas Avanzadas;Roberto Trillo Lopez;25/12/22;En este curso se impartira las diferentes maneras de analizar los problemas del mundo real;40;45.4;proyector
-1;Fisica;Alejandro Ramirez Perez;1/1/23;ciencia que estudia las interacciones fundamentales en la naturaleza, desde lo microscópico a lo macroscópico;40;34.6;vacio
-2;Ingenieria Orientada a Objetos;Francisco Palomino Lara;2/2/23;Disciplina y profesión que aplica los conocimientos técnicos y científicos y utiliza las leyes naturales y los recursos físicos;15;23;camara

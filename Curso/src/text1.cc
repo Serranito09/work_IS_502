@@ -89,3 +89,29 @@ TEST(eliminarCurso,P06){
 }
 
 
+TEST(CreacionDeParticipantes,P07){
+    vector<Persona> c;
+    Persona p("31885014E");
+    Persona p2("31885015B");
+    c.push_back(p);
+    c.push_back(p2);
+    EXPECT_TRUE(p.ComprobarDni("31885014E",c));
+    EXPECT_FALSE(p.ComprobarDni("3091234B",c));
+    EXPECT_FALSE(p.ComprobarDni("4564123B",c));
+    EXPECT_TRUE(p.ComprobarDni("31885015B",c));
+} 
+
+
+
+
+TEST(CreacionDeCursos,P08){
+    vector<Curso> c1;
+    Curso c(1);
+    Curso c2(2);
+    c1.push_back(c);
+    c1.push_back(c2);
+    EXPECT_FALSE(c.comprobarID(3,&c1));
+    EXPECT_TRUE(c.comprobarID(1,&c1));
+    EXPECT_TRUE(c.comprobarID(2,&c1));
+}
+

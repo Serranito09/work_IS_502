@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/runUnitTests.dir/src/Text.cc.o CMakeFiles/runUnitTests.dir/src/main.cc.o CMakeFiles/runUnitTests.dir/src/menu.cc.o -o runUnitTests  lib/libgtest.a lib/libgtest_main.a lib/libgtest.a 
